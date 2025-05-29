@@ -193,7 +193,6 @@
   </style>
 </head>
 <body class="min-h-screen gradient-bg relative overflow-x-hidden">
-  <!-- Floating Background Shapes -->
   <div class="floating-shapes">
     <div class="shape w-64 h-64 bg-white rounded-full"></div>
     <div class="shape w-48 h-48 bg-blue-200 rounded-full"></div>
@@ -201,9 +200,7 @@
   </div>
 
   <div class="min-h-screen flex flex-col items-center justify-center p-4 relative z-10">
-    <!-- Header Section -->
     <div id="formContainer" class="w-full max-w-4xl animate-fade-in">
-      <!-- Hero Section -->
       <div class="text-center mb-12">
         <div class="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-lg mb-6 animate-bounce-slow">
           <i class="fas fa-file-alt text-3xl text-blue-600"></i>
@@ -216,12 +213,8 @@
           Transform your career data into a stunning, professional resume in seconds. Upload your JSON file and watch the magic happen.
         </p>
       </div>
-
-      <!-- Main Upload Card -->
       <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 mb-8 animate-slide-up" style="animation-delay: 0.4s;">
-        <!-- Upload Form -->
         <form id="uploadForm" class="space-y-8">
-          <!-- File Upload Area -->
           <div class="file-upload-area" id="uploadArea">
             <div class="upload-icon">
               <i class="fas fa-cloud-upload-alt"></i>
@@ -235,16 +228,12 @@
             </button>
             <div id="fileName" class="mt-4 text-sm text-gray-600 hidden"></div>
           </div>
-
-          <!-- Generate Button -->
           <button type="submit" class="w-full btn-gradient text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center" id="generateBtn" disabled>
             <i class="fas fa-magic mr-3"></i>
             <span>Generate Beautiful Resume</span>
           </button>
         </form>
       </div>
-
-      <!-- Features Section -->
       <div class="grid md:grid-cols-3 gap-6 mb-8 animate-slide-up" style="animation-delay: 0.6s;">
         <div class="feature-card rounded-2xl p-6 text-center">
           <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -270,8 +259,6 @@
           <p class="text-gray-600 text-sm">Download as PDF for applications or PNG for social media sharing.</p>
         </div>
       </div>
-
-      <!-- Info Banner with How it Works -->
 <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 animate-slide-up" style="animation-delay: 0.8s;">
   <div class="flex items-start">
     <div class="flex-shrink-0">
@@ -291,8 +278,6 @@
         Upload your CV data in JSON format and our intelligent system will automatically format it into a professional resume. 
         The JSON should contain sections like personal_info, experience, education, skills, and more.
       </p>
-      
-      <!-- Expandable How it Works Section -->
       <div id="howItWorksContent" class="hidden mt-6 border-t border-blue-200 pt-6">
         <h5 class="font-semibold text-blue-900 mb-4">Step-by-Step Instructions:</h5>
         
@@ -372,11 +357,7 @@
   </div>
 </div>
     </div>
-
-    <!-- Resume Container (Hidden Initially) -->
     <div id="resumeContainer" class="mt-8 w-full max-w-4xl"></div>
-
-    <!-- Download Buttons -->
     <div id="downloadWrapper" class="mt-8 flex flex-col sm:flex-row justify-center gap-4 animate-fade-in" style="display: none;">
       <button id="downloadBtn" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center font-semibold transform hover:scale-105">
         <i class="fas fa-file-pdf mr-3 text-xl"></i>
@@ -391,14 +372,10 @@
 
   <script>
     let lastResumeHtml = '';
-
-    // File input handling
     const fileInput = document.getElementById('fileInput');
     const uploadArea = document.getElementById('uploadArea');
     const fileName = document.getElementById('fileName');
     const generateBtn = document.getElementById('generateBtn');
-
-    // Drag and drop functionality
     uploadArea.addEventListener('dragover', (e) => {
       e.preventDefault();
       uploadArea.classList.add('dragover');
@@ -434,8 +411,6 @@
       e.preventDefault();
       const fileInput = document.getElementById('fileInput');
       if (!fileInput.files.length) return;
-
-      // Show loading state
       generateBtn.innerHTML = `
         <div class="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-white mr-3"></div>
         <span>Processing...</span>
@@ -456,30 +431,22 @@
         const html = renderResume(data.cv);
         document.getElementById('resumeContainer').innerHTML = html;
         lastResumeHtml = html;
-
-        // Hide the form container with animation
         document.getElementById('formContainer').style.transform = 'translateY(-20px)';
         document.getElementById('formContainer').style.opacity = '0';
         setTimeout(() => {
           document.getElementById('formContainer').style.display = 'none';
         }, 300);
-
-        // Show download buttons
         document.getElementById('downloadWrapper').style.display = 'flex';
       } catch (error) {
-        // Reset button on error
         generateBtn.innerHTML = `
           <i class="fas fa-magic mr-3"></i>
           <span>Generate Beautiful Resume</span>
         `;
         generateBtn.disabled = false;
-        
-        // Show error message
         alert('Error processing your file. Please make sure it\'s a valid JSON format.');
       }
     });
 
-    // PDF Button
     document.getElementById('downloadBtn').addEventListener('click', function() {
       const printWindow = window.open('', '', 'width=900,height=700');
       const style = `
@@ -503,7 +470,6 @@
       printWindow.print();
     });
 
-    // PNG Button
     document.getElementById('downloadPngBtn').addEventListener('click', async function() {
       const container = document.getElementById('resumeContainer');
       if (!window.html2canvas) {
@@ -639,7 +605,6 @@
       `;
     }
 
-// How it Works toggle functionality
 document.getElementById('howItWorksBtn').addEventListener('click', function() {
   const content = document.getElementById('howItWorksContent');
   const chevron = document.getElementById('chevronIcon');
@@ -655,7 +620,6 @@ document.getElementById('howItWorksBtn').addEventListener('click', function() {
   }
 });
 
-// Sample JSON download functionality
 document.getElementById('sampleJsonBtn').addEventListener('click', function() {
   const sampleData = {
     "cv": {
