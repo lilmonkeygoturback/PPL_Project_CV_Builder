@@ -1,11 +1,15 @@
-from CVParser import CVParser
-from CVVisitor import CVVisitor as BaseVisitor
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'CompiledFiles'))
+from CompiledFiles.CVParser import CVParser
+from CompiledFiles.CVVisitor import CVVisitor as BaseVisitor
 
 class CVToDictVisitor(BaseVisitor):
     def visitCv(self, ctx:CVParser.CvContext):
-        return self.visit(ctx.object())
+        # Use ctx.obj() instead of ctx.object()
+        return self.visit(ctx.obj())
 
-    def visitObject(self, ctx:CVParser.ObjectContext):
+    def visitObj(self, ctx:CVParser.ObjContext):
         obj = {}
         for pair in ctx.pair():
             key, value = self.visit(pair)
@@ -13,7 +17,7 @@ class CVToDictVisitor(BaseVisitor):
         return obj
 
     def visitPair(self, ctx:CVParser.PairContext):
-        key = self.visit(ctx.STRING())
+        key = self._strip_quotes(ctx.STRING().getText())
         value = self.visit(ctx.value())
         return key, value
 
@@ -26,8 +30,8 @@ class CVToDictVisitor(BaseVisitor):
         elif ctx.NUMBER():
             num = ctx.NUMBER().getText()
             return float(num) if '.' in num or 'e' in num or 'E' in num else int(num)
-        elif ctx.object_():
-            return self.visit(ctx.object_())
+        elif ctx.obj():
+            return self.visit(ctx.obj())
         elif ctx.array():
             return self.visit(ctx.array())
         elif ctx.getText() == 'true':

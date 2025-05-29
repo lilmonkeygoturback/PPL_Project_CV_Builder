@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CV/Resume Builder</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+<div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl mt-10">
+    <h1 class="text-3xl font-bold mb-6 text-center">CV/Resume Builder</h1>
+    
+    <form id="uploadForm" class="mb-6">
+        <label class="block mb-2 font-semibold">Upload your CV DSL file (JSON format):</label>
+        <input type="file" id="fileInput" accept=".json,.txt" class="mb-4" required title="Upload your CV DSL file (JSON format)" />
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Generate Resume
+        </button>
+    </form>
+    
+    <div id="resumeContainer" class="mt-8"></div>
+
+    <!-- Download Buttons -->
+    <div id="downloadWrapper" class="mt-6 flex justify-center gap-4" style="display: none;">
+        <button id="downloadBtn" class="bg-green-600 text-white px-6 py-2 rounded-lg shadow hover:bg-green-700 transition-all duration-300">
+        Download PDF
+        </button>
+        <button id="downloadPngBtn" class="bg-purple-600 text-white px-6 py-2 rounded-lg shadow hover:bg-purple-700 transition-all duration-300">
+        Download PNG
+        </button>
+    </div>
+</div>
+
+<script>
+    let lastResumeHtml = '';
+
+    document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const fileInput = document.getElementById('fileInput');
+        if (!fileInput.files.length) return;
+
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await fetch('/parse', {
+        method: 'POST',
+        body: formData
+        });
+
+        const data = await response.json();
+        const html = renderResume(data.cv);
+        document.getElementById('resumeContainer').innerHTML = html;
+        lastResumeHtml = html;
+
+      // Show both buttons
+        document.getElementById('downloadWrapper').style.display = 'flex';
+    });
+
+    // PDF Button
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+        const printWindow = window.open('', '', 'width=900,height=700');
+        const style = `
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <style>
+            body { background: #f3f4f6; margin: 0; padding: 20px; }
+            .bg-white { box-shadow: none !important; }
+        </style>
+        `;
+        printWindow.document.write('<html><head><title>Resume PDF</title>' + style + '</head><body>' + lastResumeHtml + '</body></html>');
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+    });
+
+    // PNG Button
+    document.getElementById('downloadPngBtn').addEventListener('click', async function() {
+        const container = document.getElementById('resumeContainer');
+        if (!window.html2canvas) {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+        script.onload = () => savePng(container);
+        document.body.appendChild(script);
+        } else {
+        savePng(container);
+        }
+    });
+
+    function savePng(container) {
+        html2canvas(container).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'resume.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        });
+    }
+
+    function renderResume(cv) {
+        if (!cv) return '<p class="text-red-500">Failed to parse CV.</p>';
+        return `
+        <div class="bg-white p-6 rounded shadow">
+            <h2 class="text-2xl font-bold mb-2">${cv.personal_info.name}</h2>
+            <div class="mb-2 text-gray-600">
+            <span>${cv.personal_info.email}</span> |
+            <span>${cv.personal_info.phone}</span> |
+            <span>${cv.personal_info.address}</span>
+            </div>
+            <div class="mb-4 text-blue-700">
+            <span>${cv.personal_info.linkedin || ''}</span> |
+            <span>${cv.personal_info.website || ''}</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-1">Summary</h3>
+            <p class="mb-4">${cv.summary}</p>
+            <h3 class="font-semibold text-lg mb-1">Education</h3>
+            <ul class="mb-4">
+            ${(cv.education || []).map(e => `
+                <li><b>${e.degree}</b>, ${e.institution} (${e.start} - ${e.end})<br>
+                <span class="text-gray-600">${e.details || ''}</span></li>
+            `).join('')}
+            </ul>
+            <h3 class="font-semibold text-lg mb-1">Experience</h3>
+            <ul class="mb-4">
+            ${(cv.experience || []).map(e => `
+                <li><b>${e.title}</b> at ${e.company} (${e.start} - ${e.end})<br>
+                <span class="text-gray-600">${e.location}</span>
+                <ul class="list-disc ml-6">
+                ${(e.responsibilities || []).map(r => `<li>${r}</li>`).join('')}
+                </ul>
+            `).join('')}
+            </ul>
+            <h3 class="font-semibold text-lg mb-1">Skills</h3>
+            <div class="flex flex-wrap gap-2 mb-4">
+            ${(cv.skills || []).map(s => `<span class="bg-gray-200 px-2 py-1 rounded">${s}</span>`).join('')}
+            </div>
+            <h3 class="font-semibold text-lg mb-1">Certifications</h3>
+            <ul class="mb-4">
+            ${(cv.certifications || []).map(c => `<li>${c.name} (${c.year})</li>`).join('')}
+            </ul>
+            <h3 class="font-semibold text-lg mb-1">Languages</h3>
+            <ul>
+            ${(cv.languages || []).map(l => `<li>${l.language}: ${l.level}</li>`).join('')}
+            </ul>
+        </div>
+        `;
+    }
+</script>
+</body>
+</html>

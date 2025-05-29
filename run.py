@@ -5,7 +5,7 @@ import json
 
 # Define your variables
 DIR = os.path.dirname(__file__)
-ANTLR_JAR = 'D:/antlr/antlr4-4.9.2-complete.jar'  # Update this path if needed
+ANTLR_JAR = 'D:/antlr/antlr-4.13.2-complete.jar'  # Update this path if needed
 CPL_Dest = 'CompiledFiles'
 SRC = 'CV.g4'
 DSL_FILE = 'dsl_cv.json'

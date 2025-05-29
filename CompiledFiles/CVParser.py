@@ -1,4 +1,4 @@
-# Generated from CV.g4 by ANTLR 4.9.2
+# Generated from CV.g4 by ANTLR 4.13.2
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -8,29 +8,24 @@ if sys.version_info[1] > 5:
 else:
 	from typing.io import TextIO
 
-
 def serializedATN():
-    with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\16")
-        buf.write("\63\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3")
-        buf.write("\2\3\3\3\3\3\3\3\3\7\3\24\n\3\f\3\16\3\27\13\3\3\3\3\3")
-        buf.write("\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\7\5#\n\5\f\5\16\5&\13")
-        buf.write("\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6\61\n\6\3\6")
-        buf.write("\2\2\7\2\4\6\b\n\2\2\2\65\2\f\3\2\2\2\4\17\3\2\2\2\6\32")
-        buf.write("\3\2\2\2\b\36\3\2\2\2\n\60\3\2\2\2\f\r\5\4\3\2\r\16\7")
-        buf.write("\2\2\3\16\3\3\2\2\2\17\20\7\3\2\2\20\25\5\6\4\2\21\22")
-        buf.write("\7\4\2\2\22\24\5\6\4\2\23\21\3\2\2\2\24\27\3\2\2\2\25")
-        buf.write("\23\3\2\2\2\25\26\3\2\2\2\26\30\3\2\2\2\27\25\3\2\2\2")
-        buf.write("\30\31\7\5\2\2\31\5\3\2\2\2\32\33\7\f\2\2\33\34\7\6\2")
-        buf.write("\2\34\35\5\n\6\2\35\7\3\2\2\2\36\37\7\7\2\2\37$\5\n\6")
-        buf.write("\2 !\7\4\2\2!#\5\n\6\2\" \3\2\2\2#&\3\2\2\2$\"\3\2\2\2")
-        buf.write("$%\3\2\2\2%\'\3\2\2\2&$\3\2\2\2\'(\7\b\2\2(\t\3\2\2\2")
-        buf.write(")\61\7\f\2\2*\61\7\r\2\2+\61\5\4\3\2,\61\5\b\5\2-\61\7")
-        buf.write("\t\2\2.\61\7\n\2\2/\61\7\13\2\2\60)\3\2\2\2\60*\3\2\2")
-        buf.write("\2\60+\3\2\2\2\60,\3\2\2\2\60-\3\2\2\2\60.\3\2\2\2\60")
-        buf.write("/\3\2\2\2\61\13\3\2\2\2\5\25$\60")
-        return buf.getvalue()
-
+    return [
+        4,1,12,49,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,0,1,
+        1,1,1,1,1,1,1,5,1,18,8,1,10,1,12,1,21,9,1,1,1,1,1,1,2,1,2,1,2,1,
+        2,1,3,1,3,1,3,1,3,5,3,33,8,3,10,3,12,3,36,9,3,1,3,1,3,1,4,1,4,1,
+        4,1,4,1,4,1,4,1,4,3,4,47,8,4,1,4,0,0,5,0,2,4,6,8,0,0,51,0,10,1,0,
+        0,0,2,13,1,0,0,0,4,24,1,0,0,0,6,28,1,0,0,0,8,46,1,0,0,0,10,11,3,
+        2,1,0,11,12,5,0,0,1,12,1,1,0,0,0,13,14,5,1,0,0,14,19,3,4,2,0,15,
+        16,5,2,0,0,16,18,3,4,2,0,17,15,1,0,0,0,18,21,1,0,0,0,19,17,1,0,0,
+        0,19,20,1,0,0,0,20,22,1,0,0,0,21,19,1,0,0,0,22,23,5,3,0,0,23,3,1,
+        0,0,0,24,25,5,10,0,0,25,26,5,4,0,0,26,27,3,8,4,0,27,5,1,0,0,0,28,
+        29,5,5,0,0,29,34,3,8,4,0,30,31,5,2,0,0,31,33,3,8,4,0,32,30,1,0,0,
+        0,33,36,1,0,0,0,34,32,1,0,0,0,34,35,1,0,0,0,35,37,1,0,0,0,36,34,
+        1,0,0,0,37,38,5,6,0,0,38,7,1,0,0,0,39,47,5,10,0,0,40,47,5,11,0,0,
+        41,47,3,2,1,0,42,47,3,6,3,0,43,47,5,7,0,0,44,47,5,8,0,0,45,47,5,
+        9,0,0,46,39,1,0,0,0,46,40,1,0,0,0,46,41,1,0,0,0,46,42,1,0,0,0,46,
+        43,1,0,0,0,46,44,1,0,0,0,46,45,1,0,0,0,47,9,1,0,0,0,3,19,34,46
+    ]
 
 class CVParser ( Parser ):
 
@@ -73,7 +68,7 @@ class CVParser ( Parser ):
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.9.2")
+        self.checkVersion("4.13.2")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
@@ -165,7 +160,7 @@ class CVParser ( Parser ):
             self.state = 19
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==CVParser.T__1:
+            while _la==2:
                 self.state = 15
                 self.match(CVParser.T__1)
                 self.state = 16
@@ -272,7 +267,7 @@ class CVParser ( Parser ):
             self.state = 34
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==CVParser.T__1:
+            while _la==2:
                 self.state = 30
                 self.match(CVParser.T__1)
                 self.state = 31
@@ -333,37 +328,37 @@ class CVParser ( Parser ):
             self.state = 46
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [CVParser.STRING]:
+            if token in [10]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 39
                 self.match(CVParser.STRING)
                 pass
-            elif token in [CVParser.NUMBER]:
+            elif token in [11]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 40
                 self.match(CVParser.NUMBER)
                 pass
-            elif token in [CVParser.T__0]:
+            elif token in [1]:
                 self.enterOuterAlt(localctx, 3)
                 self.state = 41
                 self.obj()
                 pass
-            elif token in [CVParser.T__4]:
+            elif token in [5]:
                 self.enterOuterAlt(localctx, 4)
                 self.state = 42
                 self.array()
                 pass
-            elif token in [CVParser.T__6]:
+            elif token in [7]:
                 self.enterOuterAlt(localctx, 5)
                 self.state = 43
                 self.match(CVParser.T__6)
                 pass
-            elif token in [CVParser.T__7]:
+            elif token in [8]:
                 self.enterOuterAlt(localctx, 6)
                 self.state = 44
                 self.match(CVParser.T__7)
                 pass
-            elif token in [CVParser.T__8]:
+            elif token in [9]:
                 self.enterOuterAlt(localctx, 7)
                 self.state = 45
                 self.match(CVParser.T__8)
