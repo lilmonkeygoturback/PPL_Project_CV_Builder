@@ -200,7 +200,9 @@
   </div>
 
   <div class="min-h-screen flex flex-col items-center justify-center p-4 relative z-10">
+   
     <div id="formContainer" class="w-full max-w-4xl animate-fade-in">
+    
       <div class="text-center mb-12">
         <div class="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-lg mb-6 animate-bounce-slow">
           <i class="fas fa-file-alt text-3xl text-blue-600"></i>
@@ -213,8 +215,11 @@
           Transform your career data into a stunning, professional resume in seconds. Upload your JSON file and watch the magic happen.
         </p>
       </div>
+
       <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 mb-8 animate-slide-up" style="animation-delay: 0.4s;">
+      
         <form id="uploadForm" class="space-y-8">
+         
           <div class="file-upload-area" id="uploadArea">
             <div class="upload-icon">
               <i class="fas fa-cloud-upload-alt"></i>
@@ -228,12 +233,14 @@
             </button>
             <div id="fileName" class="mt-4 text-sm text-gray-600 hidden"></div>
           </div>
+
           <button type="submit" class="w-full btn-gradient text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center" id="generateBtn" disabled>
             <i class="fas fa-magic mr-3"></i>
             <span>Generate Beautiful Resume</span>
           </button>
         </form>
       </div>
+
       <div class="grid md:grid-cols-3 gap-6 mb-8 animate-slide-up" style="animation-delay: 0.6s;">
         <div class="feature-card rounded-2xl p-6 text-center">
           <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -259,6 +266,7 @@
           <p class="text-gray-600 text-sm">Download as PDF for applications or PNG for social media sharing.</p>
         </div>
       </div>
+
 <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 animate-slide-up" style="animation-delay: 0.8s;">
   <div class="flex items-start">
     <div class="flex-shrink-0">
@@ -278,6 +286,7 @@
         Upload your CV data in JSON format and our intelligent system will automatically format it into a professional resume. 
         The JSON should contain sections like personal_info, experience, education, skills, and more.
       </p>
+      
       <div id="howItWorksContent" class="hidden mt-6 border-t border-blue-200 pt-6">
         <h5 class="font-semibold text-blue-900 mb-4">Step-by-Step Instructions:</h5>
         
@@ -357,7 +366,9 @@
   </div>
 </div>
     </div>
+
     <div id="resumeContainer" class="mt-8 w-full max-w-4xl"></div>
+
     <div id="downloadWrapper" class="mt-8 flex flex-col sm:flex-row justify-center gap-4 animate-fade-in" style="display: none;">
       <button id="downloadBtn" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center font-semibold transform hover:scale-105">
         <i class="fas fa-file-pdf mr-3 text-xl"></i>
@@ -372,10 +383,12 @@
 
   <script>
     let lastResumeHtml = '';
+
     const fileInput = document.getElementById('fileInput');
     const uploadArea = document.getElementById('uploadArea');
     const fileName = document.getElementById('fileName');
     const generateBtn = document.getElementById('generateBtn');
+
     uploadArea.addEventListener('dragover', (e) => {
       e.preventDefault();
       uploadArea.classList.add('dragover');
@@ -411,6 +424,7 @@
       e.preventDefault();
       const fileInput = document.getElementById('fileInput');
       if (!fileInput.files.length) return;
+
       generateBtn.innerHTML = `
         <div class="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-white mr-3"></div>
         <span>Processing...</span>
@@ -431,11 +445,13 @@
         const html = renderResume(data.cv);
         document.getElementById('resumeContainer').innerHTML = html;
         lastResumeHtml = html;
+
         document.getElementById('formContainer').style.transform = 'translateY(-20px)';
         document.getElementById('formContainer').style.opacity = '0';
         setTimeout(() => {
           document.getElementById('formContainer').style.display = 'none';
         }, 300);
+
         document.getElementById('downloadWrapper').style.display = 'flex';
       } catch (error) {
         generateBtn.innerHTML = `
@@ -443,6 +459,7 @@
           <span>Generate Beautiful Resume</span>
         `;
         generateBtn.disabled = false;
+
         alert('Error processing your file. Please make sure it\'s a valid JSON format.');
       }
     });
@@ -483,11 +500,90 @@
     });
 
     function savePng(container) {
-      html2canvas(container).then(canvas => {
-        const link = document.createElement('a');
-        link.download = 'resume.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
+      const loadingId = 'png-loading-indicator';
+      const loadingEl = document.createElement('div');
+      loadingEl.id = loadingId;
+      loadingEl.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+      loadingEl.innerHTML = `
+        <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+          <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p>Generating crystal-clear PNG image...</p>
+        </div>
+      `;
+      document.body.appendChild(loadingEl);
+      
+      document.fonts.ready.then(() => {
+        setTimeout(() => {
+          html2canvas(container, {
+            scale: 4, 
+            logging: false,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: '#ffffff',
+            width: container.offsetWidth,
+            height: container.offsetHeight,
+            scrollX: 0,
+            scrollY: 0,
+            windowWidth: window.innerWidth,
+            windowHeight: window.innerHeight,
+            imageTimeout: 30000,
+            removeContainer: false,
+            foreignObjectRendering: false,
+            letterRendering: true, 
+            onclone: function(clonedDoc) {
+              const style = clonedDoc.createElement('style');
+              style.textContent = `
+                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+                * {
+                  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+                  -webkit-font-smoothing: antialiased !important;
+                  -moz-osx-font-smoothing: grayscale !important;
+                  text-rendering: optimizeLegibility !important;
+                  font-feature-settings: "liga", "kern" !important;
+                }
+                body {
+                  font-family: 'Inter', sans-serif !important;
+                  transform: scale(1) !important;
+                }
+              `;
+              clonedDoc.head.appendChild(style);
+              
+              const fontLink = clonedDoc.createElement('link');
+              fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap';
+              fontLink.rel = 'stylesheet';
+              clonedDoc.head.appendChild(fontLink);
+              
+              return new Promise(resolve => {
+                setTimeout(resolve, 1500);
+              });
+            }
+          }).then(canvas => {
+           
+            const finalCanvas = document.createElement('canvas');
+            const ctx = finalCanvas.getContext('2d');
+            
+            finalCanvas.width = canvas.width;
+            finalCanvas.height = canvas.height;
+            
+            ctx.imageSmoothingEnabled = false; 
+            ctx.textBaseline = 'top';
+            ctx.textAlign = 'left';
+            
+            ctx.drawImage(canvas, 0, 0);
+            
+            const link = document.createElement('a');
+            link.download = 'resume.png';
+            link.href = finalCanvas.toDataURL('image/png', 1.0);
+            link.click();
+      
+            document.getElementById(loadingId).remove();
+            
+          }).catch(error => {
+            console.error('Error generating PNG:', error);
+            alert('Error generating PNG. Please try again.');
+            document.getElementById(loadingId).remove();
+          });
+        }, 1000); 
       });
     }
 
