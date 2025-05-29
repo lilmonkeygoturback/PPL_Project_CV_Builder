@@ -1,51 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>CV/Resume Builder</title>
-<script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Professional CV/Resume Builder</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            secondary: {
+              50: '#f8fafc',
+              100: '#f1f5f9',
+              200: '#e2e8f0',
+              300: '#cbd5e1',
+              400: '#94a3b8',
+              500: '#64748b',
+              600: '#475569',
+              700: '#334155',
+              800: '#1e293b',
+              900: '#0f172a',
+            },
+            accent: {
+              50: '#fdf4ff',
+              100: '#fae8ff',
+              200: '#f5d0fe',
+              300: '#f0abfc',
+              400: '#e879f9',
+              500: '#d946ef',
+              600: '#c026d3',
+              700: '#a21caf',
+              800: '#86198f',
+              900: '#701a75',
+            }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 3s ease-in-out infinite',
+            'bounce-slow': 'bounce 2s infinite',
+            'fade-in': 'fadeIn 0.5s ease-in-out',
+            'slide-up': 'slideUp 0.6s ease-out',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(30px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    
+    .file-upload-area {
+      position: relative;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      background: linear-gradient(145deg, #f8fafc, #e2e8f0);
+    }
+    
+    .file-upload-area:hover {
+      border-color: #3b82f6;
+      background: linear-gradient(145deg, #eff6ff, #dbeafe);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15);
+    }
+    
+    .file-upload-area.dragover {
+      border-color: #10b981;
+      background: linear-gradient(145deg, #ecfdf5, #d1fae5);
+      transform: scale(1.02);
+    }
+    
+    .upload-icon {
+      font-size: 3rem;
+      color: #3b82f6;
+      margin-bottom: 1rem;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .btn-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transition: all 0.3s ease;
+      transform: translateY(0);
+    }
+    
+    .btn-gradient:hover {
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+    
+    .feature-card {
+      background: linear-gradient(145deg, #ffffff, #f1f5f9);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+    
+    .shape {
+      position: absolute;
+      opacity: 0.1;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    .shape:nth-child(1) {
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    
+    .shape:nth-child(2) {
+      top: 60%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+    
+    .shape:nth-child(3) {
+      bottom: 20%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+    
+    @media print {
+      body { -webkit-print-color-adjust: exact; }
+      .no-print { display: none; }
+    }
+    @page {
+      margin: 0.5in;
+      size: letter;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
-<div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl mt-10">
-    <h1 class="text-3xl font-bold mb-6 text-center">CV/Resume Builder</h1>
-    
-    <form id="uploadForm" class="mb-6">
-        <label class="block mb-2 font-semibold">Upload your CV DSL file (JSON format):</label>
-        <input type="file" id="fileInput" accept=".json,.txt" class="mb-4" required title="Upload your CV DSL file (JSON format)" />
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        Generate Resume
+<body class="min-h-screen gradient-bg relative overflow-x-hidden">
+  <!-- Floating Background Shapes -->
+  <div class="floating-shapes">
+    <div class="shape w-64 h-64 bg-white rounded-full"></div>
+    <div class="shape w-48 h-48 bg-blue-200 rounded-full"></div>
+    <div class="shape w-32 h-32 bg-purple-200 rounded-full"></div>
+  </div>
+
+  <div class="min-h-screen flex flex-col items-center justify-center p-4 relative z-10">
+    <!-- Header Section -->
+    <div id="formContainer" class="w-full max-w-4xl animate-fade-in">
+      <!-- Hero Section -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-lg mb-6 animate-bounce-slow">
+          <i class="fas fa-file-alt text-3xl text-blue-600"></i>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 animate-slide-up">
+          Professional
+          <span class="block gradient-text bg-white bg-clip-text text-transparent">Resume Builder</span>
+        </h1>
+        <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto animate-slide-up" style="animation-delay: 0.2s;">
+          Transform your career data into a stunning, professional resume in seconds. Upload your JSON file and watch the magic happen.
+        </p>
+      </div>
+
+      <!-- Main Upload Card -->
+      <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 mb-8 animate-slide-up" style="animation-delay: 0.4s;">
+        <!-- Upload Form -->
+        <form id="uploadForm" class="space-y-8">
+          <!-- File Upload Area -->
+          <div class="file-upload-area" id="uploadArea">
+            <div class="upload-icon">
+              <i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Upload Your CV Data</h3>
+            <p class="text-gray-600 mb-4">Drag and drop your JSON file here, or click to browse</p>
+            <input type="file" id="fileInput" accept=".json,.txt" class="hidden" required title="Upload your CV DSL file (JSON format)" />
+            <button type="button" onclick="document.getElementById('fileInput').click()" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 inline-flex items-center">
+              <i class="fas fa-folder-open mr-2"></i>
+              Choose File
+            </button>
+            <div id="fileName" class="mt-4 text-sm text-gray-600 hidden"></div>
+          </div>
+
+          <!-- Generate Button -->
+          <button type="submit" class="w-full btn-gradient text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center" id="generateBtn" disabled>
+            <i class="fas fa-magic mr-3"></i>
+            <span>Generate Beautiful Resume</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Features Section -->
+      <div class="grid md:grid-cols-3 gap-6 mb-8 animate-slide-up" style="animation-delay: 0.6s;">
+        <div class="feature-card rounded-2xl p-6 text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-rocket text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">Lightning Fast</h3>
+          <p class="text-gray-600 text-sm">Generate your resume in seconds with our optimized processing engine.</p>
+        </div>
+
+        <div class="feature-card rounded-2xl p-6 text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-palette text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">Beautiful Design</h3>
+          <p class="text-gray-600 text-sm">Professional layouts that make your resume stand out from the crowd.</p>
+        </div>
+
+        <div class="feature-card rounded-2xl p-6 text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-download text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">Multiple Formats</h3>
+          <p class="text-gray-600 text-sm">Download as PDF for applications or PNG for social media sharing.</p>
+        </div>
+      </div>
+
+      <!-- Info Banner with How it Works -->
+<div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 animate-slide-up" style="animation-delay: 0.8s;">
+  <div class="flex items-start">
+    <div class="flex-shrink-0">
+      <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+        <i class="fas fa-info text-white"></i>
+      </div>
+    </div>
+    <div class="ml-4 flex-1">
+      <div class="flex items-center justify-between mb-2">
+        <h4 class="text-lg font-semibold text-blue-900">Quick Start Guide</h4>
+        <button id="howItWorksBtn" class="text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center transition-colors duration-200">
+          <span>How it Works</span>
+          <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200" id="chevronIcon"></i>
         </button>
-    </form>
-    
-    <div id="resumeContainer" class="mt-8"></div>
+      </div>
+      <p class="text-blue-800 text-sm leading-relaxed">
+        Upload your CV data in JSON format and our intelligent system will automatically format it into a professional resume. 
+        The JSON should contain sections like personal_info, experience, education, skills, and more.
+      </p>
+      
+      <!-- Expandable How it Works Section -->
+      <div id="howItWorksContent" class="hidden mt-6 border-t border-blue-200 pt-6">
+        <h5 class="font-semibold text-blue-900 mb-4">Step-by-Step Instructions:</h5>
+        
+        <div class="space-y-4">
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3">1</div>
+            <div>
+              <h6 class="font-medium text-blue-900">Prepare Your JSON File</h6>
+              <p class="text-blue-700 text-sm">Create a JSON file with your CV data following this structure:</p>
+              <div class="mt-2 bg-blue-100 rounded-lg p-3 text-xs font-mono text-blue-800 overflow-x-auto">
+{<br>
+&nbsp;&nbsp;"cv": {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"personal_info": {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "Your Name",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"email": "your.email@example.com",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"phone": "+1234567890",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"address": "Your City, Country",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"linkedin": "linkedin.com/in/yourprofile",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"website": "yourwebsite.com"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"summary": "Your professional summary...",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"experience": [...],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"education": [...],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"skills": [...],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"certifications": [...],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;"languages": [...]<br>
+&nbsp;&nbsp;}<br>
+}
+</div>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3">2</div>
+            <div>
+              <h6 class="font-medium text-blue-900">Upload Your File</h6>
+              <p class="text-blue-700 text-sm">Drag and drop your JSON file into the upload area above, or click "Choose File" to browse and select it.</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3">3</div>
+            <div>
+              <h6 class="font-medium text-blue-900">Generate Resume</h6>
+              <p class="text-blue-700 text-sm">Click "Generate Beautiful Resume" and watch as your data transforms into a professional resume layout.</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3">4</div>
+            <div>
+              <h6 class="font-medium text-blue-900">Download & Share</h6>
+              <p class="text-blue-700 text-sm">Download your resume as PDF for job applications or PNG for social media sharing.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-6 p-4 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg">
+          <div class="flex items-center">
+            <i class="fas fa-lightbulb text-green-600 mr-2"></i>
+            <span class="font-medium text-green-800">Pro Tip:</span>
+          </div>
+          <p class="text-green-700 text-sm mt-1">
+            Make sure your JSON file is properly formatted and includes all required fields for the best results. 
+            You can validate your JSON using online tools before uploading.
+          </p>
+        </div>
+        
+        <div class="mt-4 flex justify-center">
+          <button id="sampleJsonBtn" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center">
+            <i class="fas fa-download mr-2"></i>
+            Download Sample JSON
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+
+    <!-- Resume Container (Hidden Initially) -->
+    <div id="resumeContainer" class="mt-8 w-full max-w-4xl"></div>
 
     <!-- Download Buttons -->
-    <div id="downloadWrapper" class="mt-6 flex justify-center gap-4" style="display: none;">
-        <button id="downloadBtn" class="bg-green-600 text-white px-6 py-2 rounded-lg shadow hover:bg-green-700 transition-all duration-300">
+    <div id="downloadWrapper" class="mt-8 flex flex-col sm:flex-row justify-center gap-4 animate-fade-in" style="display: none;">
+      <button id="downloadBtn" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center font-semibold transform hover:scale-105">
+        <i class="fas fa-file-pdf mr-3 text-xl"></i>
         Download PDF
-        </button>
-        <button id="downloadPngBtn" class="bg-purple-600 text-white px-6 py-2 rounded-lg shadow hover:bg-purple-700 transition-all duration-300">
+      </button>
+      <button id="downloadPngBtn" class="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white px-8 py-4 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center font-semibold transform hover:scale-105">
+        <i class="fas fa-file-image mr-3 text-xl"></i>
         Download PNG
-        </button>
+      </button>
     </div>
-</div>
+  </div>
 
-<script>
+  <script>
     let lastResumeHtml = '';
 
+    // File input handling
+    const fileInput = document.getElementById('fileInput');
+    const uploadArea = document.getElementById('uploadArea');
+    const fileName = document.getElementById('fileName');
+    const generateBtn = document.getElementById('generateBtn');
+
+    // Drag and drop functionality
+    uploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.classList.add('dragover');
+    });
+
+    uploadArea.addEventListener('dragleave', () => {
+      uploadArea.classList.remove('dragover');
+    });
+
+    uploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove('dragover');
+      const files = e.dataTransfer.files;
+      if (files.length > 0) {
+        fileInput.files = files;
+        handleFileSelect();
+      }
+    });
+
+    fileInput.addEventListener('change', handleFileSelect);
+
+    function handleFileSelect() {
+      const file = fileInput.files[0];
+      if (file) {
+        fileName.textContent = `Selected: ${file.name}`;
+        fileName.classList.remove('hidden');
+        generateBtn.disabled = false;
+        generateBtn.classList.add('animate-pulse-slow');
+      }
+    }
+
     document.getElementById('uploadForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const fileInput = document.getElementById('fileInput');
-        if (!fileInput.files.length) return;
+      e.preventDefault();
+      const fileInput = document.getElementById('fileInput');
+      if (!fileInput.files.length) return;
 
-        const file = fileInput.files[0];
-        const formData = new FormData();
-        formData.append('file', file);
+      // Show loading state
+      generateBtn.innerHTML = `
+        <div class="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-white mr-3"></div>
+        <span>Processing...</span>
+      `;
+      generateBtn.disabled = true;
 
+      const file = fileInput.files[0];
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
         const response = await fetch('/parse', {
-        method: 'POST',
-        body: formData
+          method: 'POST',
+          body: formData
         });
 
         const data = await response.json();
@@ -53,96 +457,313 @@
         document.getElementById('resumeContainer').innerHTML = html;
         lastResumeHtml = html;
 
-      // Show both buttons
+        // Hide the form container with animation
+        document.getElementById('formContainer').style.transform = 'translateY(-20px)';
+        document.getElementById('formContainer').style.opacity = '0';
+        setTimeout(() => {
+          document.getElementById('formContainer').style.display = 'none';
+        }, 300);
+
+        // Show download buttons
         document.getElementById('downloadWrapper').style.display = 'flex';
+      } catch (error) {
+        // Reset button on error
+        generateBtn.innerHTML = `
+          <i class="fas fa-magic mr-3"></i>
+          <span>Generate Beautiful Resume</span>
+        `;
+        generateBtn.disabled = false;
+        
+        // Show error message
+        alert('Error processing your file. Please make sure it\'s a valid JSON format.');
+      }
     });
 
     // PDF Button
     document.getElementById('downloadBtn').addEventListener('click', function() {
-        const printWindow = window.open('', '', 'width=900,height=700');
-        const style = `
+      const printWindow = window.open('', '', 'width=900,height=700');
+      const style = `
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         <style>
-            body { background: #f3f4f6; margin: 0; padding: 20px; }
-            .bg-white { box-shadow: none !important; }
+          body { background: #f3f4f6; margin: 0; padding: 20px; }
+          .bg-white { box-shadow: none !important; }
+          @media print {
+            body { -webkit-print-color-adjust: exact; }
+            .no-print { display: none; }
+          }
+          @page {
+            margin: 0.5in;
+            size: letter;
+          }
         </style>
-        `;
-        printWindow.document.write('<html><head><title>Resume PDF</title>' + style + '</head><body>' + lastResumeHtml + '</body></html>');
-        printWindow.document.close();
-        printWindow.focus();
-        printWindow.print();
+      `;
+      printWindow.document.write('<html><head><title>Resume PDF</title>' + style + '</head><body>' + lastResumeHtml + '</body></html>');
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.print();
     });
 
     // PNG Button
     document.getElementById('downloadPngBtn').addEventListener('click', async function() {
-        const container = document.getElementById('resumeContainer');
-        if (!window.html2canvas) {
+      const container = document.getElementById('resumeContainer');
+      if (!window.html2canvas) {
         const script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
         script.onload = () => savePng(container);
         document.body.appendChild(script);
-        } else {
+      } else {
         savePng(container);
-        }
+      }
     });
 
     function savePng(container) {
-        html2canvas(container).then(canvas => {
+      html2canvas(container).then(canvas => {
         const link = document.createElement('a');
         link.download = 'resume.png';
         link.href = canvas.toDataURL('image/png');
         link.click();
-        });
+      });
     }
 
     function renderResume(cv) {
-        if (!cv) return '<p class="text-red-500">Failed to parse CV.</p>';
-        return `
-        <div class="bg-white p-6 rounded shadow">
-            <h2 class="text-2xl font-bold mb-2">${cv.personal_info.name}</h2>
-            <div class="mb-2 text-gray-600">
-            <span>${cv.personal_info.email}</span> |
-            <span>${cv.personal_info.phone}</span> |
-            <span>${cv.personal_info.address}</span>
+      if (!cv) return '<p class="text-red-500">Failed to parse CV.</p>';
+      return `
+        <div class="max-w-4xl mx-auto p-8 bg-white shadow-lg animate-fade-in">
+          
+          <!-- Header Section -->
+          <header class="text-center border-b-2 border-gray-200 pb-6 mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">${cv.personal_info.name}</h1>
+            <h2 class="text-xl text-gray-600 mb-4">Senior Software Engineer</h2>
+            <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+              <span>📧 ${cv.personal_info.email}</span>
+              <span>📱 ${cv.personal_info.phone}</span>
+              <span>🌐 ${cv.personal_info.linkedin || ''}</span>
+              <span>📍 ${cv.personal_info.address}</span>
             </div>
-            <div class="mb-4 text-blue-700">
-            <span>${cv.personal_info.linkedin || ''}</span> |
-            <span>${cv.personal_info.website || ''}</span>
-            </div>
-            <h3 class="font-semibold text-lg mb-1">Summary</h3>
-            <p class="mb-4">${cv.summary}</p>
-            <h3 class="font-semibold text-lg mb-1">Education</h3>
-            <ul class="mb-4">
-            ${(cv.education || []).map(e => `
-                <li><b>${e.degree}</b>, ${e.institution} (${e.start} - ${e.end})<br>
-                <span class="text-gray-600">${e.details || ''}</span></li>
-            `).join('')}
-            </ul>
-            <h3 class="font-semibold text-lg mb-1">Experience</h3>
-            <ul class="mb-4">
+          </header>
+
+          <!-- Professional Summary -->
+          <section class="mb-8">
+            <h3 class="text-2xl font-semibold text-gray-800 border-b border-gray-300 pb-2 mb-4">Professional Summary</h3>
+            <p class="text-gray-700 leading-relaxed">
+              ${cv.summary}
+            </p>
+          </section>
+
+          <!-- Experience Section -->
+          <section class="mb-8">
+            <h3 class="text-2xl font-semibold text-gray-800 border-b border-gray-300 pb-2 mb-6">Experience</h3>
+            
             ${(cv.experience || []).map(e => `
-                <li><b>${e.title}</b> at ${e.company} (${e.start} - ${e.end})<br>
-                <span class="text-gray-600">${e.location}</span>
-                <ul class="list-disc ml-6">
-                ${(e.responsibilities || []).map(r => `<li>${r}</li>`).join('')}
+              <div class="mb-6">
+                <div class="flex justify-between items-start mb-2">
+                  <div>
+                    <h4 class="text-lg font-semibold text-gray-800">${e.title}</h4>
+                    <p class="text-gray-600">${e.company}</p>
+                  </div>
+                  <span class="text-sm text-gray-500 font-medium">${e.start} - ${e.end}</span>
+                </div>
+                <p class="text-gray-600 text-sm mb-2">${e.location}</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                  ${(e.responsibilities || []).map(r => `<li>${r}</li>`).join('')}
                 </ul>
+              </div>
             `).join('')}
-            </ul>
-            <h3 class="font-semibold text-lg mb-1">Skills</h3>
-            <div class="flex flex-wrap gap-2 mb-4">
-            ${(cv.skills || []).map(s => `<span class="bg-gray-200 px-2 py-1 rounded">${s}</span>`).join('')}
+          </section>
+
+          <!-- Education Section -->
+          <section class="mb-8">
+            <h3 class="text-2xl font-semibold text-gray-800 border-b border-gray-300 pb-2 mb-6">Education</h3>
+            
+            ${(cv.education || []).map(e => `
+              <div class="mb-4">
+                <div class="flex justify-between items-start mb-2">
+                  <div>
+                    <h4 class="text-lg font-semibold text-gray-800">${e.degree}</h4>
+                    <p class="text-gray-600">${e.institution}</p>
+                  </div>
+                  <span class="text-sm text-gray-500 font-medium">${e.start} - ${e.end}</span>
+                </div>
+                ${e.details ? `<p class="text-gray-700 ml-4">${e.details}</p>` : ''}
+              </div>
+            `).join('')}
+          </section>
+
+          <!-- Skills Section -->
+          <section class="mb-8">
+            <h3 class="text-2xl font-semibold text-gray-800 border-b border-gray-300 pb-2 mb-6">Technical Skills</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="text-lg font-semibold text-gray-800 mb-3">Skills</h4>
+                <div class="flex flex-wrap gap-2">
+                  ${(cv.skills || []).map(s => `<span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">${s}</span>`).join('')}
+                </div>
+              </div>
             </div>
-            <h3 class="font-semibold text-lg mb-1">Certifications</h3>
-            <ul class="mb-4">
-            ${(cv.certifications || []).map(c => `<li>${c.name} (${c.year})</li>`).join('')}
-            </ul>
-            <h3 class="font-semibold text-lg mb-1">Languages</h3>
-            <ul>
-            ${(cv.languages || []).map(l => `<li>${l.language}: ${l.level}</li>`).join('')}
-            </ul>
+          </section>
+
+          <!-- Certifications Section -->
+          <section class="mb-8">
+            <h3 class="text-2xl font-semibold text-gray-800 border-b border-gray-300 pb-2 mb-6">Certifications</h3>
+            
+            ${(cv.certifications || []).map(c => `
+              <div class="mb-4">
+                <div class="flex justify-between items-start mb-2">
+                  <div>
+                    <h4 class="text-lg font-semibold text-gray-800">${c.name}</h4>
+                  </div>
+                  <span class="text-sm text-gray-500 font-medium">${c.year}</span>
+                </div>
+              </div>
+            `).join('')}
+          </section>
+
+          <!-- Languages Section -->
+          <section class="mb-8">
+            <h3 class="text-2xl font-semibold text-gray-800 border-b border-gray-300 pb-2 mb-6">Languages</h3>
+            
+            ${(cv.languages || []).map(l => `
+              <div class="mb-2">
+                <span class="text-gray-800 font-medium">${l.language}:</span>
+                <span class="text-gray-600 ml-2">${l.level}</span>
+              </div>
+            `).join('')}
+          </section>
+
+          <!-- Footer -->
+          <footer class="text-center text-sm text-gray-500 border-t border-gray-200 pt-4">
+            <p>References available upon request</p>
+          </footer>
         </div>
-        `;
+      `;
     }
+
+// How it Works toggle functionality
+document.getElementById('howItWorksBtn').addEventListener('click', function() {
+  const content = document.getElementById('howItWorksContent');
+  const chevron = document.getElementById('chevronIcon');
+  
+  if (content.classList.contains('hidden')) {
+    content.classList.remove('hidden');
+    content.classList.add('animate-slide-up');
+    chevron.style.transform = 'rotate(180deg)';
+  } else {
+    content.classList.add('hidden');
+    content.classList.remove('animate-slide-up');
+    chevron.style.transform = 'rotate(0deg)';
+  }
+});
+
+// Sample JSON download functionality
+document.getElementById('sampleJsonBtn').addEventListener('click', function() {
+  const sampleData = {
+    "cv": {
+      "personal_info": {
+        "name": "Quy Pham",
+        "email": "quy123@gmail.com",
+        "phone": "+84 123 456 789",
+        "address": "1/2 CMT8, district 3, Ho Chi Minh city",
+        "linkedin": "linkedin.com/in/quy123",
+        "website": "quy123.com"
+      },
+      "summary": "Experienced software engineer with 8+ years of expertise in full-stack development, cloud architecture, and team leadership. Proven track record of delivering scalable solutions and mentoring development teams in fast-paced environments.",
+      "education": [
+        {
+          "degree": "B.Sc. Computer Science",
+          "institution": "University of International, Viet Nam",
+          "start": "2022",
+          "end": "2026",
+          "details": "Magna Cum Laude, GPA: 3.8/4.0"
+        }
+      ],
+      "experience": [
+        {
+          "title": "Senior Software Engineer",
+          "company": "TechCorp Solutions",
+          "start": "2023-01",
+          "end": "Present",
+          "location": "1/2 Cao Thang, Tan Binh district, Ho Chi Minh city, Viet Nam",
+          "responsibilities": [
+            "Led development of microservices architecture serving 1M+ daily users",
+            "Mentored team of 5 junior developers and improved code quality by 40%",
+            "Implemented CI/CD pipelines reducing deployment time by 60%",
+            "Collaborated with product teams to deliver features ahead of schedule"
+          ]
+        },
+        {
+          "title": "Software Engineer",
+          "company": "Code Technologies",
+          "start": "2023-08",
+          "end": "2024-05",
+          "location": "2/37 Dang Van Bi, Phu Nhuan District, Ho Chi Minh City, Viet Nam",
+          "responsibilities": [
+            "Developed responsive web applications using React and Node.js",
+            "Optimized database queries improving application performance by 35%",
+            "Integrated third-party APIs and payment processing systems"
+          ]
+        },
+        {
+          "title": "Junior Developer",
+          "company": "WebStart Solutions",
+          "start": "2024-08",
+          "end": "2025-01",
+          "location": "40/246 Nam Ky Khoi Nghia, District 3, Ho Chi Minh City, Viet Nam",
+          "responsibilities": [
+            "Developed web applications using modern JavaScript frameworks",
+            "Maintained legacy code and improved system performance",
+            "Collaborated with design team to implement user interfaces"
+          ]
+        }
+      ],
+      "skills": [
+        "JavaScript",
+        "TypeScript", 
+        "Python",
+        "React",
+        "Node.js",
+        "AWS",
+        "Docker",
+        "PostgreSQL",
+        "MongoDB",
+        "Git"
+      ],
+      "certifications": [
+        {
+          "name": "AWS Certified Solutions Architect",
+          "year": "2021"
+        },
+        {
+          "name": "Google Cloud Professional Developer",
+          "year": "2022"
+        }
+      ],
+      "languages": [
+        {
+          "language": "English",
+          "level": "Native"
+        },
+        {
+          "language": "Spanish",
+          "level": "Intermediate"
+        },
+        {
+          "language": "French",
+          "level": "Basic"
+        }
+      ]
+    }
+  };
+  
+  const dataStr = JSON.stringify(sampleData, null, 2);
+  const dataBlob = new Blob([dataStr], {type: 'application/json'});
+  const url = URL.createObjectURL(dataBlob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'sample-cv-dsl.json';
+  link.click();
+  URL.revokeObjectURL(url);
+});
 </script>
 </body>
 </html>
