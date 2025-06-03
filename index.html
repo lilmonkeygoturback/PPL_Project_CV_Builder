@@ -849,7 +849,6 @@
           document.getElementById('resumeContainer').innerHTML = html;
           lastResumeHtml = html;
 
-          // Smooth transition
           document.getElementById('formContainer').style.transform = 'translateY(-30px)';
           document.getElementById('formContainer').style.opacity = '0';
           setTimeout(() => {
@@ -858,7 +857,6 @@
 
           document.getElementById('downloadWrapper').style.display = 'flex';
           
-          // Success message
           setTimeout(() => {
             alert('🎉 Your beautiful resume has been generated successfully!');
           }, 1000);
@@ -926,8 +924,7 @@
       document.getElementById('formContainer').style.opacity = '1';
       document.getElementById('downloadWrapper').style.display = 'none';
       document.getElementById('resumeContainer').innerHTML = '';
-      
-      // Reset form
+
       fileInput.value = '';
       fileName.classList.add('hidden');
       generateBtn.disabled = true;
