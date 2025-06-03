@@ -12,48 +12,60 @@
         extend: {
           colors: {
             primary: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              200: '#bfdbfe',
-              300: '#93c5fd',
-              400: '#60a5fa',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-              800: '#1e40af',
-              900: '#1e3a8a',
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              300: '#86efac',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
             },
             secondary: {
-              50: '#f8fafc',
-              100: '#f1f5f9',
-              200: '#e2e8f0',
-              300: '#cbd5e1',
-              400: '#94a3b8',
-              500: '#64748b',
-              600: '#475569',
-              700: '#334155',
-              800: '#1e293b',
-              900: '#0f172a',
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              200: '#99f6e4',
+              300: '#5eead4',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+              900: '#134e4a',
             },
             accent: {
-              50: '#fdf4ff',
-              100: '#fae8ff',
-              200: '#f5d0fe',
-              300: '#f0abfc',
-              400: '#e879f9',
-              500: '#d946ef',
-              600: '#c026d3',
-              700: '#a21caf',
-              800: '#86198f',
-              900: '#701a75',
+              50: '#f7fee7',
+              100: '#ecfccb',
+              200: '#d9f99d',
+              300: '#bef264',
+              400: '#a3e635',
+              500: '#84cc16',
+              600: '#65a30d',
+              700: '#4d7c0f',
+              800: '#3f6212',
+              900: '#365314',
             }
           },
           animation: {
             'float': 'float 6s ease-in-out infinite',
+            'float-delayed': 'float 6s ease-in-out infinite 2s',
+            'float-slow': 'float 8s ease-in-out infinite',
             'pulse-slow': 'pulse 3s ease-in-out infinite',
             'bounce-slow': 'bounce 2s infinite',
-            'fade-in': 'fadeIn 0.5s ease-in-out',
-            'slide-up': 'slideUp 0.6s ease-out',
+            'fade-in': 'fadeIn 0.8s ease-in-out',
+            'slide-up': 'slideUp 0.8s ease-out',
+            'slide-in-left': 'slideInLeft 0.8s ease-out',
+            'slide-in-right': 'slideInRight 0.8s ease-out',
+            'scale-in': 'scaleIn 0.6s ease-out',
+            'rotate-slow': 'rotate 20s linear infinite',
+            'gradient-shift': 'gradientShift 8s ease-in-out infinite',
+            'sparkle': 'sparkle 2s ease-in-out infinite',
+            'glow': 'glow 2s ease-in-out infinite alternate',
+            'aurora': 'aurora 20s ease-in-out infinite',
+            'shimmer': 'shimmer 3s ease-in-out infinite',
+            'wave': 'wave 4s ease-in-out infinite',
           },
           keyframes: {
             float: {
@@ -61,12 +73,61 @@
               '50%': { transform: 'translateY(-20px)' },
             },
             fadeIn: {
-              '0%': { opacity: '0' },
-              '100%': { opacity: '1' },
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
             },
             slideUp: {
-              '0%': { transform: 'translateY(30px)', opacity: '0' },
+              '0%': { transform: 'translateY(50px)', opacity: '0' },
               '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+            slideInLeft: {
+              '0%': { transform: 'translateX(-50px)', opacity: '0' },
+              '100%': { transform: 'translateX(0)', opacity: '1' },
+            },
+            slideInRight: {
+              '0%': { transform: 'translateX(50px)', opacity: '0' },
+              '100%': { transform: 'translateX(0)', opacity: '1' },
+            },
+            scaleIn: {
+              '0%': { transform: 'scale(0.8)', opacity: '0' },
+              '100%': { transform: 'scale(1)', opacity: '1' },
+            },
+            gradientShift: {
+              '0%, 100%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+            },
+            sparkle: {
+              '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+              '50%': { opacity: '0.5', transform: 'scale(1.2)' },
+            },
+            glow: {
+              '0%': { boxShadow: '0 0 20px rgba(134, 239, 172, 0.5)' },
+              '100%': { boxShadow: '0 0 40px rgba(134, 239, 172, 0.8), 0 0 60px rgba(187, 247, 208, 0.4)' },
+            },
+            aurora: {
+              '0%, 100%': { 
+                background: 'linear-gradient(-45deg, #f0fdf4, #dcfce7, #bbf7d0, #86efac, #a7f3d0, #6ee7b7, #34d399, #10b981)',
+                backgroundSize: '400% 400%',
+                backgroundPosition: '0% 50%'
+              },
+              '25%': { 
+                backgroundPosition: '100% 50%'
+              },
+              '50%': { 
+                backgroundPosition: '100% 100%'
+              },
+              '75%': { 
+                backgroundPosition: '0% 100%'
+              }
+            },
+            shimmer: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(100%)' }
+            },
+            wave: {
+              '0%, 100%': { transform: 'rotate(0deg)' },
+              '25%': { transform: 'rotate(5deg)' },
+              '75%': { transform: 'rotate(-5deg)' }
             }
           }
         }
@@ -74,80 +135,174 @@
     }
   </script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     
     body {
       font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
     }
     
     .gradient-bg {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(-45deg, #f0fdf4, #dcfce7, #bbf7d0, #86efac, #a7f3d0, #6ee7b7, #34d399, #10b981);
+      background-size: 400% 400%;
+      animation: aurora 20s ease infinite;
+      position: relative;
     }
     
-    .gradient-text {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .gradient-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 80%, rgba(134, 239, 172, 0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(187, 247, 208, 0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 40%, rgba(167, 243, 208, 0.2) 0%, transparent 50%);
+      animation: aurora 15s ease infinite reverse;
     }
+    
+    .aurora-text {
+  background: linear-gradient(-45deg, #065f46, #047857, #059669, #0d9488, #0f766e, #115e59, #134e4a, #064e3b);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: aurora 15s ease infinite;
+  font-weight: 900;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
     
     .glass-effect {
       background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1),
+                  0 0 0 1px rgba(255, 255, 255, 0.1),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
     
     .file-upload-area {
       position: relative;
-      border: 2px dashed #cbd5e1;
-      border-radius: 12px;
-      padding: 2rem;
+      border: 3px dashed #d1fae5;
+      border-radius: 24px;
+      padding: 3rem;
       text-align: center;
-      transition: all 0.3s ease;
-      background: linear-gradient(145deg, #f8fafc, #e2e8f0);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: linear-gradient(145deg, #fefefe, #f0fdf4);
+      overflow: hidden;
+    }
+    
+    .file-upload-area::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(134, 239, 172, 0.15), transparent);
+      transition: left 0.6s;
+    }
+    
+    .file-upload-area:hover::before {
+      left: 100%;
     }
     
     .file-upload-area:hover {
-      border-color: #3b82f6;
-      background: linear-gradient(145deg, #eff6ff, #dbeafe);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15);
+      border-color: #86efac;
+      background: linear-gradient(145deg, #f0fdf4, #dcfce7);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(134, 239, 172, 0.25);
     }
     
     .file-upload-area.dragover {
-      border-color: #10b981;
+      border-color: #34d399;
       background: linear-gradient(145deg, #ecfdf5, #d1fae5);
-      transform: scale(1.02);
+      transform: scale(1.05);
+      box-shadow: 0 30px 60px rgba(52, 211, 153, 0.3);
     }
     
     .upload-icon {
-      font-size: 3rem;
-      color: #3b82f6;
-      margin-bottom: 1rem;
+      font-size: 4.5rem;
+      background: linear-gradient(135deg, #059669, #10b981, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
       animation: float 6s ease-in-out infinite;
     }
     
     .btn-gradient {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      transition: all 0.3s ease;
+      background: linear-gradient(135deg, #059669 0%, #10b981 25%, #34d399 50%, #6ee7b7 75%, #a7f3d0 100%);
+      background-size: 300% 300%;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       transform: translateY(0);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s;
+    }
+    
+    .btn-gradient:hover::before {
+      left: 100%;
     }
     
     .btn-gradient:hover {
-      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+      background-position: right center;
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(134, 239, 172, 0.4);
     }
     
     .feature-card {
-      background: linear-gradient(145deg, #ffffff, #f1f5f9);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
+      background: linear-gradient(145deg, #ffffff, #fafafa);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(134, 239, 172, 0.08), rgba(187, 247, 208, 0.08));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .feature-card:hover::before {
+      opacity: 1;
     }
     
     .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      transform: translateY(-12px) scale(1.05);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
     }
     
     .floating-shapes {
@@ -155,48 +310,273 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      z-index: -1;
+      z-index: 0;
     }
     
     .shape {
       position: absolute;
-      opacity: 0.1;
-      animation: float 8s ease-in-out infinite;
+      opacity: 0.15;
     }
     
     .shape:nth-child(1) {
-      top: 20%;
+      top: 10%;
       left: 10%;
-      animation-delay: 0s;
+      width: 320px;
+      height: 320px;
+      background: linear-gradient(135deg, #86efac, #bbf7d0);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
     }
     
     .shape:nth-child(2) {
-      top: 60%;
+      top: 50%;
       right: 10%;
-      animation-delay: 2s;
+      width: 220px;
+      height: 220px;
+      background: linear-gradient(135deg, #34d399, #6ee7b7);
+      border-radius: 50%;
+      animation: float-delayed 10s ease-in-out infinite;
     }
     
     .shape:nth-child(3) {
-      bottom: 20%;
-      left: 20%;
-      animation-delay: 4s;
+      bottom: 10%;
+      left: 30%;
+      width: 280px;
+      height: 280px;
+      background: linear-gradient(135deg, #a7f3d0, #d1fae5);
+      border-radius: 50%;
+      animation: float-slow 12s ease-in-out infinite;
+    }
+    
+    .shape:nth-child(4) {
+      top: 30%;
+      left: 60%;
+      width: 160px;
+      height: 160px;
+      background: linear-gradient(135deg, #10b981, #34d399);
+      border-radius: 50%;
+      animation: float 7s ease-in-out infinite 1s;
+    }
+    
+    .shape:nth-child(5) {
+      bottom: 40%;
+      right: 30%;
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(135deg, #6ee7b7, #a7f3d0);
+      border-radius: 50%;
+      animation: float-delayed 9s ease-in-out infinite;
+    }
+    
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(134, 239, 172, 0.6) 100%);
+      border-radius: 50%;
+      animation: sparkle 3s ease-in-out infinite;
+    }
+    
+    .particle:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; }
+    .particle:nth-child(2) { top: 35%; left: 18%; animation-delay: 0.5s; }
+    .particle:nth-child(3) { top: 55%; left: 28%; animation-delay: 1s; }
+    .particle:nth-child(4) { top: 75%; left: 38%; animation-delay: 1.5s; }
+    .particle:nth-child(5) { top: 25%; right: 8%; animation-delay: 2s; }
+    .particle:nth-child(6) { top: 45%; right: 18%; animation-delay: 2.5s; }
+    .particle:nth-child(7) { top: 65%; right: 28%; animation-delay: 3s; }
+    .particle:nth-child(8) { top: 85%; right: 38%; animation-delay: 3.5s; }
+    .particle:nth-child(9) { top: 60%; left: 50%; animation-delay: 1.2s; }
+    .particle:nth-child(10) { top: 20%; left: 70%; animation-delay: 2.8s; }
+    
+    .glow-effect {
+      position: relative;
+    }
+    
+    .glow-effect::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      background: linear-gradient(45deg, #86efac, #bbf7d0, #34d399, #6ee7b7, #a7f3d0, #10b981);
+      border-radius: inherit;
+      z-index: -1;
+      filter: blur(15px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .glow-effect:hover::before {
+      opacity: 0.8;
+    }
+    
+    .text-shadow {
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8), 0 2px 6px rgba(255, 255, 255, 0.9);
+}
+
+.text-shadow-strong {
+  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.9), 0 3px 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
+}
+    
+    .icon-bounce {
+      animation: bounce 2s infinite;
+    }
+    
+    .icon-rotate {
+      animation: rotate-slow 20s linear infinite;
+    }
+    
+    .icon-wave {
+      animation: wave 4s ease-in-out infinite;
+    }
+    
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-8px);
+    }
+    
+    .shimmer-effect {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .shimmer-effect::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    
+    .aurora-text {
+      background: linear-gradient(-45deg, #059669, #10b981, #34d399, #6ee7b7, #a7f3d0, #bbf7d0, #86efac, #22c55e);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: aurora 15s ease infinite;
     }
     
     @media print {
-      body { -webkit-print-color-adjust: exact; }
+      body { 
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
       .no-print { display: none; }
     }
     @page {
       margin: 0.5in;
       size: letter;
     }
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #86efac, #34d399);
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, #10b981, #6ee7b7);
+    }
+
+    .dark-text {
+  color: #064e3b !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8), 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+.stats-text {
+  color: #065f46 !important;
+  font-weight: 900 !important;
+  text-shadow: 0 2px 6px rgba(255, 255, 255, 0.9), 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(6, 95, 70, 0.2);
+}
+
+.hero-text {
+  color: #064e3b !important;
+  font-weight: 900 !important;
+  text-shadow: 0 4px 12px rgba(255, 255, 255, 0.9), 0 2px 6px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.7) !important;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.subtitle-text {
+  color: #047857 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 3px 8px rgba(255, 255, 255, 0.8), 0 1px 4px rgba(0, 0, 0, 0.3) !important;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  backdrop-filter: blur(8px);
+}
+
+.stats-container {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #064e3b 0%, #047857 25%, #059669 50%, #0d9488 75%, #0f766e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 300% 300%;
+  animation: gradientShift 8s ease infinite;
+  font-weight: 900;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
   </style>
 </head>
 <body class="min-h-screen gradient-bg relative overflow-x-hidden">
   <div class="floating-shapes">
-    <div class="shape w-64 h-64 bg-white rounded-full"></div>
-    <div class="shape w-48 h-48 bg-blue-200 rounded-full"></div>
-    <div class="shape w-32 h-32 bg-purple-200 rounded-full"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
   </div>
 
   <div class="min-h-screen flex flex-col items-center justify-center p-4 relative z-10">
@@ -204,99 +584,118 @@
     <div id="formContainer" class="w-full max-w-4xl animate-fade-in">
     
       <div class="text-center mb-12">
-        <div class="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-lg mb-6 animate-bounce-slow">
-          <i class="fas fa-file-alt text-3xl text-blue-600"></i>
+        <div class="inline-flex items-center justify-center w-28 h-28 glass-effect rounded-full shadow-2xl mb-8 animate-bounce-slow glow-effect">
+          <i class="fas fa-file-alt text-5xl text-white icon-bounce shimmer-effect"></i>
         </div>
-        <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 animate-slide-up">
+        <h1 class="text-6xl md:text-8xl font-black hero-text mb-6 animate-slide-up" style="font-family: 'Playfair Display', serif;">
           Professional
-          <span class="block gradient-text bg-white bg-clip-text text-transparent">Resume Builder</span>
+          <span class="block aurora-text animate-slide-up" style="animation-delay: 0.2s;">Resume Builder</span>
         </h1>
-        <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto animate-slide-up" style="animation-delay: 0.2s;">
-          Transform your career data into a stunning, professional resume in seconds. Upload your JSON file and watch the magic happen.
+        <p class="text-2xl subtitle-text mb-10 max-w-3xl mx-auto animate-slide-up leading-relaxed" style="animation-delay: 0.4s;">
+          Transform your career data into a <span class="text-white font-extrabold text-shadow-strong drop-shadow-2xl">
+  beautiful and professional resume
+</span>
+. Upload your JSON file here to see how magic happens!
         </p>
+
+        <div class="flex justify-center space-x-12 mb-8 animate-slide-up" style="animation-delay: 0.6s;">
+          <div class="text-center glass-effect rounded-2xl p-4 hover-lift stats-container">
+            <div class="text-4xl font-black stats-text">10000+</div>
+            <div class="dark-text text-sm">Resumes Created</div>
+          </div>
+          <div class="text-center glass-effect rounded-2xl p-4 hover-lift stats-container">
+            <div class="text-4xl font-black stats-text">99.99%</div>
+            <div class="dark-text text-sm">Success Rate</div>
+          </div>
+          <div class="text-center glass-effect rounded-2xl p-4 hover-lift stats-container">
+            <div class="text-4xl font-black stats-text">5 stars</div>
+            <div class="dark-text text-sm">User Rating</div>
+          </div>
+        </div>
       </div>
 
-      <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 mb-8 animate-slide-up" style="animation-delay: 0.4s;">
+      <div class="glass-card rounded-3xl shadow-2xl p-12 md:p-20 mb-12 animate-slide-up glow-effect shimmer-effect" style="animation-delay: 0.8s;">
       
-        <form id="uploadForm" class="space-y-8">
+        <form id="uploadForm" class="space-y-12">
          
-          <div class="file-upload-area" id="uploadArea">
+          <div class="file-upload-area glow-effect shimmer-effect" id="uploadArea">
             <div class="upload-icon">
-              <i class="fas fa-cloud-upload-alt"></i>
+              <i class="fas fa-cloud-upload-alt icon-wave"></i>
             </div>
-            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Upload Your CV Data</h3>
-            <p class="text-gray-600 mb-4">Drag and drop your JSON file here, or click to browse</p>
+            <h3 class="text-4xl font-bold text-gray-800 mb-4" style="font-family: 'Playfair Display', serif;">Upload Your CV Data</h3>
+            <p class="text-gray-600 mb-8 text-xl">Drag and drop your JSON file here, or click to browse</p>
             <input type="file" id="fileInput" accept=".json,.txt" class="hidden" required title="Upload your CV DSL file (JSON format)" />
-            <button type="button" onclick="document.getElementById('fileInput').click()" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 inline-flex items-center">
-              <i class="fas fa-folder-open mr-2"></i>
+            <button type="button" onclick="document.getElementById('fileInput').click()" class="bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 text-white px-10 py-5 rounded-2xl font-bold text-xl transition-all duration-300 inline-flex items-center hover-lift glow-effect shimmer-effect">
+              <i class="fas fa-folder-open mr-4 text-xl"></i>
               Choose File
+              <i class="fas fa-sparkles ml-4 text-xl"></i>
             </button>
-            <div id="fileName" class="mt-4 text-sm text-gray-600 hidden"></div>
+            <div id="fileName" class="mt-8 text-xl text-gray-700 hidden font-semibold"></div>
           </div>
 
-          <button type="submit" class="w-full btn-gradient text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center" id="generateBtn" disabled>
-            <i class="fas fa-magic mr-3"></i>
+          <button type="submit" class="w-full btn-gradient text-white px-12 py-8 rounded-3xl font-black text-2xl shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center glow-effect shimmer-effect" id="generateBtn" disabled>
+            <i class="fas fa-magic mr-5 text-3xl icon-wave"></i>
             <span>Generate Beautiful Resume</span>
+            <i class="fas fa-sparkles ml-5 text-3xl icon-bounce"></i>
           </button>
         </form>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6 mb-8 animate-slide-up" style="animation-delay: 0.6s;">
-        <div class="feature-card rounded-2xl p-6 text-center">
-          <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-rocket text-white text-2xl"></i>
+      <div class="grid md:grid-cols-3 gap-10 mb-12 animate-slide-up" style="animation-delay: 1s;">
+        <div class="feature-card rounded-3xl p-10 text-center hover-lift glow-effect shimmer-effect">
+          <div class="w-24 h-24 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse-slow">
+            <i class="fas fa-rocket text-white text-4xl icon-bounce"></i>
           </div>
-          <h3 class="text-lg font-semibold text-gray-800 mb-2">Lightning Fast</h3>
-          <p class="text-gray-600 text-sm">Generate your resume in seconds with our optimized processing engine.</p>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4" style="font-family: 'Playfair Display', serif;">Super Fast</h3>
+          <p class="text-gray-600 text-lg">Generate your resume in seconds with our optimized processing.</p>
         </div>
 
-        <div class="feature-card rounded-2xl p-6 text-center">
-          <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-palette text-white text-2xl"></i>
+        <div class="feature-card rounded-3xl p-10 text-center hover-lift glow-effect shimmer-effect">
+          <div class="w-24 h-24 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse-slow">
+            <i class="fas fa-palette text-white text-4xl icon-rotate"></i>
           </div>
-          <h3 class="text-lg font-semibold text-gray-800 mb-2">Beautiful Design</h3>
-          <p class="text-gray-600 text-sm">Professional layouts that make your resume stand out from the crowd.</p>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4" style="font-family: 'Playfair Display', serif;">Professional Design</h3>
+          <p class="text-gray-600 text-lg">Stunning and professional layouts that make your resume stand out from the crowd with the impression of HR.</p>
         </div>
 
-        <div class="feature-card rounded-2xl p-6 text-center">
-          <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-download text-white text-2xl"></i>
+        <div class="feature-card rounded-3xl p-10 text-center hover-lift glow-effect shimmer-effect">
+          <div class="w-24 h-24 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse-slow">
+            <i class="fas fa-download text-white text-4xl icon-wave"></i>
           </div>
-          <h3 class="text-lg font-semibold text-gray-800 mb-2">Multiple Formats</h3>
-          <p class="text-gray-600 text-sm">Download as PDF for applications or PNG for social media sharing.</p>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4" style="font-family: 'Playfair Display', serif;">Multiple Formats</h3>
+          <p class="text-gray-600 text-lg">Download as PDF for applications or PNG for social media sharing in ultra-high quality.</p>
         </div>
       </div>
 
-<div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 animate-slide-up" style="animation-delay: 0.8s;">
+<div class="glass-card rounded-3xl p-10 animate-slide-up glow-effect shimmer-effect" style="animation-delay: 1.2s;">
   <div class="flex items-start">
     <div class="flex-shrink-0">
-      <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-        <i class="fas fa-info text-white"></i>
+      <div class="w-16 h-16 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 rounded-full flex items-center justify-center animate-pulse-slow">
+        <i class="fas fa-info text-white text-2xl"></i>
       </div>
     </div>
-    <div class="ml-4 flex-1">
-      <div class="flex items-center justify-between mb-2">
-        <h4 class="text-lg font-semibold text-blue-900">Quick Start Guide</h4>
-        <button id="howItWorksBtn" class="text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center transition-colors duration-200">
+    <div class="ml-8 flex-1">
+      <div class="flex items-center justify-between mb-4">
+        <h4 class="text-3xl font-bold text-gray-800" style="font-family: 'Playfair Display', serif;">🚀 Quick Start Guide</h4>
+        <button id="howItWorksBtn" class="aurora-text hover:scale-110 font-bold text-xl flex items-center transition-all duration-300 hover-lift">
           <span>How it Works</span>
-          <i class="fas fa-chevron-down ml-2 transform transition-transform duration-200" id="chevronIcon"></i>
+          <i class="fas fa-chevron-down ml-4 transform transition-transform duration-300" id="chevronIcon"></i>
         </button>
       </div>
-      <p class="text-blue-800 text-sm leading-relaxed">
-        Upload your CV data in JSON format and our intelligent system will automatically format it into a professional resume. 
-        The JSON should contain sections like personal_info, experience, education, skills, and more.
+      <p class="text-gray-700 text-xl leading-relaxed">
+        Upload your CV data in JSON format, and our system will automatically format it into a professional resume. The JSON should contain sections like personal_info, experience, education, skills, and more. If you need help or do not know how to use it, please click the "How it Works" button to get the instructions.
       </p>
       
-      <div id="howItWorksContent" class="hidden mt-6 border-t border-blue-200 pt-6">
-        <h5 class="font-semibold text-blue-900 mb-4">Step-by-Step Instructions:</h5>
+      <div id="howItWorksContent" class="hidden mt-10 border-t border-gray-200 pt-10">
+        <h5 class="font-bold text-gray-800 mb-8 text-2xl" style="font-family: 'Playfair Display', serif;">📋 Step-by-Step Instructions:</h5>
         
-        <div class="space-y-4">
-          <div class="flex items-start">
-            <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3">1</div>
+        <div class="space-y-8">
+          <div class="flex items-start animate-slide-in-left">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-500 text-white rounded-full flex items-center justify-center text-xl font-black mr-6 animate-bounce-slow">1</div>
             <div>
-              <h6 class="font-medium text-blue-900">Prepare Your JSON File</h6>
-              <p class="text-blue-700 text-sm">Create a JSON file with your CV data following this structure:</p>
-              <div class="mt-2 bg-blue-100 rounded-lg p-3 text-xs font-mono text-blue-800 overflow-x-auto">
+              <h6 class="font-bold text-gray-800 text-xl mb-2" style="font-family: 'Playfair Display', serif;">📄 Prepare Your JSON File</h6>
+              <p class="text-gray-700 mb-4 text-lg">Create a JSON file with your CV data following this structure:</p>
+              <div class="mt-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-6 text-sm font-mono text-gray-800 overflow-x-auto border-l-4 border-emerald-500 shadow-lg">
 {<br>
 &nbsp;&nbsp;"cv": {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;"personal_info": {<br>
@@ -319,46 +718,47 @@
             </div>
           </div>
           
-          <div class="flex items-start">
-            <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3">2</div>
+          <div class="flex items-start animate-slide-in-right">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-full flex items-center justify-center text-xl font-black mr-6 animate-bounce-slow">2</div>
             <div>
-              <h6 class="font-medium text-blue-900">Upload Your File</h6>
-              <p class="text-blue-700 text-sm">Drag and drop your JSON file into the upload area above, or click "Choose File" to browse and select it.</p>
+              <h6 class="font-bold text-gray-800 text-xl mb-2" style="font-family: 'Playfair Display', serif;">📤 Upload Your File</h6>
+              <p class="text-gray-700 text-lg">Drag and drop your JSON file into the upload area above, or click "Choose File" to browse and select it.</p>
             </div>
           </div>
           
-          <div class="flex items-start">
-            <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3">3</div>
+          <div class="flex items-start animate-slide-in-left">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-teal-500 to-emerald-500 text-white rounded-full flex items-center justify-center text-xl font-black mr-6 animate-bounce-slow">3</div>
             <div>
-              <h6 class="font-medium text-blue-900">Generate Resume</h6>
-              <p class="text-blue-700 text-sm">Click "Generate Beautiful Resume" and watch as your data transforms into a professional resume layout.</p>
+              <h6 class="font-bold text-gray-800 text-xl mb-2" style="font-family: 'Playfair Display', serif;">✨ Generate Resume</h6>
+              <p class="text-gray-700 text-lg">Click "Generate Beautiful Resume" and watch as your data transforms into a professional resume layout with stunning animations.</p>
             </div>
           </div>
           
-          <div class="flex items-start">
-            <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold mr-3">4</div>
+          <div class="flex items-start animate-slide-in-right">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-full flex items-center justify-center text-xl font-black mr-6 animate-bounce-slow">4</div>
             <div>
-              <h6 class="font-medium text-blue-900">Download & Share</h6>
-              <p class="text-blue-700 text-sm">Download your resume as PDF for job applications or PNG for social media sharing.</p>
+              <h6 class="font-bold text-gray-800 text-xl mb-2" style="font-family: 'Playfair Display', serif;">💾 Download & Share</h6>
+              <p class="text-gray-700 text-lg">Download your resume as PDF for job applications or PNG for social media sharing in ultra-high quality.</p>
             </div>
           </div>
         </div>
         
-        <div class="mt-6 p-4 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg">
-          <div class="flex items-center">
-            <i class="fas fa-lightbulb text-green-600 mr-2"></i>
-            <span class="font-medium text-green-800">Pro Tip:</span>
+        <div class="mt-10 p-8 bg-gradient-to-r from-emerald-50 via-green-50 to-teal-50 border-2 border-emerald-200 rounded-3xl">
+          <div class="flex items-center mb-3">
+            <i class="fas fa-lightbulb text-emerald-600 mr-4 text-2xl animate-pulse-slow"></i>
+            <span class="font-bold text-emerald-800 text-xl" style="font-family: 'Playfair Display', serif;">💡 Pro Tip:</span>
           </div>
-          <p class="text-green-700 text-sm mt-1">
+          <p class="text-emerald-700 leading-relaxed text-lg">
             Make sure your JSON file is properly formatted and includes all required fields for the best results. 
-            You can validate your JSON using online tools before uploading.
+            You can validate your JSON using online tools before uploading for optimal performance!
           </p>
         </div>
         
-        <div class="mt-4 flex justify-center">
-          <button id="sampleJsonBtn" class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center">
-            <i class="fas fa-download mr-2"></i>
+        <div class="mt-8 flex justify-center">
+          <button id="sampleJsonBtn" class="bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 hover:from-emerald-600 hover:via-green-600 hover:to-teal-600 text-white px-10 py-5 rounded-2xl text-xl font-bold transition-all duration-300 flex items-center hover-lift glow-effect shimmer-effect">
+            <i class="fas fa-download mr-4 text-2xl"></i>
             Download Sample JSON
+            <i class="fas fa-sparkles ml-4 text-2xl"></i>
           </button>
         </div>
       </div>
@@ -367,16 +767,23 @@
 </div>
     </div>
 
-    <div id="resumeContainer" class="mt-8 w-full max-w-4xl"></div>
+    <div id="resumeContainer" class="mt-12 w-full max-w-4xl"></div>
 
-    <div id="downloadWrapper" class="mt-8 flex flex-col sm:flex-row justify-center gap-4 animate-fade-in" style="display: none;">
-      <button id="downloadBtn" class="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center font-semibold transform hover:scale-105">
-        <i class="fas fa-file-pdf mr-3 text-xl"></i>
+    <div id="downloadWrapper" class="mt-12 flex flex-col sm:flex-row justify-center gap-8 animate-fade-in" style="display: none;">
+      <button id="downloadBtn" class="bg-gradient-to-r from-emerald-500 via-teal-500 to-green-500 hover:from-emerald-600 hover:via-teal-600 hover:to-green-600 text-white px-12 py-6 rounded-3xl shadow-2xl transition-all duration-300 flex items-center justify-center font-bold text-xl hover-lift glow-effect shimmer-effect">
+        <i class="fas fa-file-pdf mr-5 text-2xl"></i>
         Download PDF
+        <i class="fas fa-download ml-5"></i>
       </button>
-      <button id="downloadPngBtn" class="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white px-8 py-4 rounded-xl shadow-lg transition-all duration-300 flex items-center justify-center font-semibold transform hover:scale-105">
-        <i class="fas fa-file-image mr-3 text-xl"></i>
+      <button id="downloadPngBtn" class="bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 hover:from-green-600 hover:via-emerald-600 hover:to-teal-600 text-white px-12 py-6 rounded-3xl shadow-2xl transition-all duration-300 flex items-center justify-center font-bold text-xl hover-lift glow-effect shimmer-effect">
+        <i class="fas fa-file-image mr-5 text-2xl"></i>
         Download PNG
+        <i class="fas fa-download ml-5"></i>
+      </button>
+      <button id="newResumeBtn" class="bg-gradient-to-r from-slate-500 via-gray-500 to-zinc-500 hover:from-slate-600 hover:via-gray-600 hover:to-zinc-600 text-white px-12 py-6 rounded-3xl shadow-2xl transition-all duration-300 flex items-center justify-center font-bold text-xl hover-lift glow-effect shimmer-effect">
+        <i class="fas fa-plus mr-5 text-2xl"></i>
+        Create New
+        <i class="fas fa-magic ml-5"></i>
       </button>
     </div>
   </div>
@@ -413,10 +820,10 @@
     function handleFileSelect() {
       const file = fileInput.files[0];
       if (file) {
-        fileName.textContent = `Selected: ${file.name}`;
+        fileName.innerHTML = `<i class="fas fa-check-circle text-emerald-500 mr-3"></i>Selected: <span class="font-bold aurora-text">${file.name}</span>`;
         fileName.classList.remove('hidden');
         generateBtn.disabled = false;
-        generateBtn.classList.add('animate-pulse-slow');
+        generateBtn.classList.add('animate-glow');
       }
     }
 
@@ -426,42 +833,48 @@
       if (!fileInput.files.length) return;
 
       generateBtn.innerHTML = `
-        <div class="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-white mr-3"></div>
-        <span>Processing...</span>
+        <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-b-4 border-white mr-5"></div>
+        <span>Processing Magic...</span>
+        <i class="fas fa-sparkles ml-5 animate-pulse"></i>
       `;
       generateBtn.disabled = true;
 
       const file = fileInput.files[0];
-      const formData = new FormData();
-      formData.append('file', file);
+      const reader = new FileReader();
+      
+      reader.onload = function(event) {
+        try {
+          const jsonData = JSON.parse(event.target.result);
+          const html = renderResume(jsonData.cv);
+          document.getElementById('resumeContainer').innerHTML = html;
+          lastResumeHtml = html;
 
-      try {
-        const response = await fetch('/parse', {
-          method: 'POST',
-          body: formData
-        });
+          // Smooth transition
+          document.getElementById('formContainer').style.transform = 'translateY(-30px)';
+          document.getElementById('formContainer').style.opacity = '0';
+          setTimeout(() => {
+            document.getElementById('formContainer').style.display = 'none';
+          }, 500);
 
-        const data = await response.json();
-        const html = renderResume(data.cv);
-        document.getElementById('resumeContainer').innerHTML = html;
-        lastResumeHtml = html;
-
-        document.getElementById('formContainer').style.transform = 'translateY(-20px)';
-        document.getElementById('formContainer').style.opacity = '0';
-        setTimeout(() => {
-          document.getElementById('formContainer').style.display = 'none';
-        }, 300);
-
-        document.getElementById('downloadWrapper').style.display = 'flex';
-      } catch (error) {
-        generateBtn.innerHTML = `
-          <i class="fas fa-magic mr-3"></i>
-          <span>Generate Beautiful Resume</span>
-        `;
-        generateBtn.disabled = false;
-
-        alert('Error processing your file. Please make sure it\'s a valid JSON format.');
-      }
+          document.getElementById('downloadWrapper').style.display = 'flex';
+          
+          // Success message
+          setTimeout(() => {
+            alert('🎉 Your beautiful resume has been generated successfully!');
+          }, 1000);
+          
+        } catch (error) {
+          generateBtn.innerHTML = `
+            <i class="fas fa-magic mr-5 text-3xl icon-wave"></i>
+            <span>Generate Beautiful Resume</span>
+            <i class="fas fa-sparkles ml-5 text-3xl icon-bounce"></i>
+          `;
+          generateBtn.disabled = false;
+          alert('❌ Error processing your file. Please make sure it\'s a valid JSON format.');
+        }
+      };
+      
+      reader.readAsText(file);
     });
 
     document.getElementById('downloadBtn').addEventListener('click', function() {
@@ -469,7 +882,13 @@
       const style = `
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         <style>
-          body { background: #f3f4f6; margin: 0; padding: 20px; }
+          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+          body { 
+            background: #f3f4f6; 
+            margin: 0; 
+            padding: 20px;
+            font-family: 'Inter', sans-serif;
+          }
           .bg-white { box-shadow: none !important; }
           @media print {
             body { -webkit-print-color-adjust: exact; }
@@ -484,7 +903,9 @@
       printWindow.document.write('<html><head><title>Resume PDF</title>' + style + '</head><body>' + lastResumeHtml + '</body></html>');
       printWindow.document.close();
       printWindow.focus();
-      printWindow.print();
+      setTimeout(() => {
+        printWindow.print();
+      }, 500);
     });
 
     document.getElementById('downloadPngBtn').addEventListener('click', async function() {
@@ -499,15 +920,34 @@
       }
     });
 
+    document.getElementById('newResumeBtn').addEventListener('click', function() {
+      document.getElementById('formContainer').style.display = 'block';
+      document.getElementById('formContainer').style.transform = 'translateY(0)';
+      document.getElementById('formContainer').style.opacity = '1';
+      document.getElementById('downloadWrapper').style.display = 'none';
+      document.getElementById('resumeContainer').innerHTML = '';
+      
+      // Reset form
+      fileInput.value = '';
+      fileName.classList.add('hidden');
+      generateBtn.disabled = true;
+      generateBtn.innerHTML = `
+        <i class="fas fa-magic mr-5 text-3xl icon-wave"></i>
+        <span>Generate Beautiful Resume</span>
+        <i class="fas fa-sparkles ml-5 text-3xl icon-bounce"></i>
+      `;
+    });
+
     function savePng(container) {
       const loadingId = 'png-loading-indicator';
       const loadingEl = document.createElement('div');
       loadingEl.id = loadingId;
       loadingEl.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
       loadingEl.innerHTML = `
-        <div class="bg-white p-6 rounded-lg shadow-lg text-center">
-          <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p>Generating crystal-clear PNG image...</p>
+        <div class="glass-card p-10 rounded-3xl shadow-2xl text-center">
+          <div class="animate-spin rounded-full h-20 w-20 border-t-4 border-b-4 border-emerald-500 mx-auto mb-8"></div>
+          <p class="text-2xl font-bold">✨ Generating crystal-clear PNG image...</p>
+          <p class="text-gray-600 mt-3 text-lg">Please wait while we create your masterpiece</p>
         </div>
       `;
       document.body.appendChild(loadingEl);
@@ -558,7 +998,6 @@
               });
             }
           }).then(canvas => {
-           
             const finalCanvas = document.createElement('canvas');
             const ctx = finalCanvas.getContext('2d');
             
@@ -577,10 +1016,11 @@
             link.click();
       
             document.getElementById(loadingId).remove();
+            alert('🎉 PNG downloaded successfully!');
             
           }).catch(error => {
             console.error('Error generating PNG:', error);
-            alert('Error generating PNG. Please try again.');
+            alert('❌ Error generating PNG. Please try again.');
             document.getElementById(loadingId).remove();
           });
         }, 1000); 
@@ -824,6 +1264,7 @@ document.getElementById('sampleJsonBtn').addEventListener('click', function() {
   link.click();
   URL.revokeObjectURL(url);
 });
+
 </script>
 </body>
 </html>
