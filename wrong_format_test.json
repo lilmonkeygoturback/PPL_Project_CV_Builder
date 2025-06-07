@@ -1,0 +1,73 @@
+{
+  "cv": {
+    "personal_info": {
+      "name": {
+        "name_1": "John Doe",
+        "name_2": "Mary Sue"
+      },
+      "email": ["john.doe@email.com", "mary.sue@email.com"],
+      "phone": {"+1 234 567 890": "abcd", 
+                "+2 345 678 901": "abcd"},
+      "address": "123 Main St, City, Country",
+      "linkedin": "linkedin.com/in/johndoe",
+      "website": "johndoe.com"
+    },
+    "summary": ["Experienced software engineer with a passion for developing innovative programs...",
+                "abcde"],
+    "education": [
+      {
+        "degree": "B.Sc. Computer Science",
+        "institution": "University of Example",
+        "start": "2015",
+        "end": "2019",
+        "details": "Graduated with honors"
+      }
+    ],
+    "experience": [
+      {
+        "title": "Senior Software Engineer",
+        "company": "TechCorp",
+        "start": "2021-01",
+        "end": "Present",
+        "location": "City, Country",
+        "responsibilities": [
+          "Led a team of 5 developers...",
+          "Designed and implemented..."
+        ]
+      },
+      {
+        "title": "Junior Developer",
+        "company": "WebStart",
+        "start": "2019-06",
+        "end": "2020-12",
+        "location": "City, Country",
+        "responsibilities": [
+          "Developed web applications...",
+          "Maintained legacy code..."
+        ]
+      }
+    ],
+    "skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL"
+    ],
+    "certifications": [
+      {
+        "name": "AWS Certified Solutions Architect",
+        "year": "2022"
+      }
+    ],
+    "languages": [
+      {
+        "language": "English",
+        "level": "native"
+      },
+      {
+        "language": "Spanish",
+        "level": "intermediate"
+      }
+    ]
+  }
+}
